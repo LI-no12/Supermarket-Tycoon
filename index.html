@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Supermarket Tycoon — V2</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="menu" class="screen">
+  <div class="menu-card">
+    <div class="eyebrow">SUPERMARKET TYCOON • VERSION 2</div>
+    <h1>Supermarket<br><span>Tycoon</span></h1>
+    <p class="subtitle">Baue dein Unternehmen auf.</p>
+
+    <section id="setup">
+      <div class="section-title">START</div>
+      <div class="settings-grid">
+        <label>Startoption
+          <select id="startMode">
+            <option value="empty">Leerer Laden</option>
+            <option value="small">Kleiner fertiger Supermarkt</option>
+            <option value="capital">Freies Startkapital</option>
+            <option value="old">Alter Supermarkt</option>
+          </select>
+        </label>
+        <label>Wirtschaft
+          <select id="economyMode">
+            <option value="beginner">Anfänger</option>
+            <option value="advanced">Fortgeschritten</option>
+            <option value="expert">Experte</option>
+          </select>
+        </label>
+      </div>
+      <button id="openCreator" class="primary">CHARAKTER ERSTELLEN</button>
+      <button id="loadGame" class="secondary">SPIELSTAND LADEN</button>
+    </section>
+
+    <section id="creator" class="hidden">
+      <div class="section-title">CHARAKTER</div>
+      <div class="creator-grid">
+        <label>Name<input id="charName" maxlength="16" value="Player"></label>
+        <label>Hautton<select id="skin"><option value="#c98f70">Hell</option><option value="#9b634a">Mittel</option><option value="#633f30">Dunkel</option></select></label>
+        <label>Haare<select id="hair"><option value="#2a211d">Braun</option><option value="#171717">Schwarz</option><option value="#c8a45a">Blond</option><option value="#6c4030">Rotbraun</option></select></label>
+        <label>Kleidung<select id="clothes"><option value="#416da8">Blau</option><option value="#3d795a">Grün</option><option value="#8b4f5b">Rot</option><option value="#5b5d67">Grau</option></select></label>
+      </div>
+      <div class="creator-preview"><div id="previewHead"></div><div id="previewBody"></div></div>
+      <button id="startGame" class="primary">SPIEL STARTEN</button>
+      <button id="backSetup" class="secondary">ZURÜCK</button>
+    </section>
+  </div>
+</div>
+
+<div id="game" class="hidden">
+<canvas id="renderCanvas"></canvas>
+<div id="hud">
+  <div class="hud-top">
+    <div class="pill">💰 <b id="money">$0</b></div>
+    <div class="pill">📅 Tag <b id="day">1</b></div>
+    <div class="pill">🕒 <b id="clock">08:00</b></div>
+    <div class="pill">⭐ <b id="rating">3.0</b></div>
+    <div class="pill">📦 Lager <b id="stock">0/20</b></div>
+  </div>
+  <div id="alert" class="alert hidden">🚨 DIEB ERKANNT — <span id="alertText">Bereich markieren</span></div>
+  <div class="hud-bottom">
+    <div id="objective" class="message">Willkommen!</div>
+    <div id="prompt" class="prompt hidden">E — Interagieren</div>
+  </div>
+</div>
+
+<div id="tutorial" class="tutorial">
+  <div class="tutorial-box">
+    <div class="tutorial-title">V2 • TUTORIAL</div>
+    <p id="tutorialText"></p>
+    <button id="tutorialNext">WEITER</button>
+  </div>
+</div>
+
+<div id="phone" class="modal hidden">
+  <div class="phone">
+    <div class="phone-head"><b>PHONE</b><button id="closePhone">×</button></div>
+    <div class="phone-grid">
+      <button id="orderBtn">📦<small>Lieferung</small></button>
+      <button id="bankBtn">🏦<small>Bank</small></button>
+      <button id="vehicleBtn">🚗<small>Fahrzeug</small></button>
+      <button id="savePhone">💾<small>Speichern</small></button>
+    </div>
+    <p id="phoneStatus">Wähle eine App.</p>
+  </div>
+</div>
+
+<div id="summary" class="modal hidden">
+  <div class="summary-card">
+    <div class="eyebrow">TAGESBILANZ</div>
+    <h2>Tag <span id="summaryDay">1</span> beendet</h2>
+    <div id="summaryRows"></div>
+    <button id="nextDay" class="primary">NÄCHSTER TAG</button>
+  </div>
+</div>
+
+<div id="pause" class="modal hidden">
+  <div class="summary-card">
+    <div class="eyebrow">PAUSE</div>
+    <h2>Spiel pausiert</h2>
+    <button id="resume" class="primary">WEITER</button>
+    <button id="save" class="secondary">SPIELSTAND SPEICHERN</button>
+    <button id="quit" class="secondary">ZUM MENÜ</button>
+  </div>
+</div>
+</div>
+<script src="https://cdn.babylonjs.com/babylon.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
